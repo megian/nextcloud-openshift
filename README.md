@@ -17,13 +17,13 @@ oc new-project $PROJECT
 ### 1 Deploy Database
 
 ```
-oc -n openshift process mariadb-persistent -p MYSQL_DATABASE=nextcloud | oc -n $PROJECT create -f -
+oc -n openshift process mariadb-persistent -p MYSQL_DATABASE=nextcloud -p DATABASE_SERVICE_NAME=nextcloud-mariadb | oc -n $PROJECT create -f -
 ```
 
 ### 2 Deploy Nextcloud
 
 ```
-oc process -f https://raw.githubusercontent.com/tobru/nextcloud-openshift/master/nextcloud.yaml -p NEXTCLOUD_HOST=nextcloud.example.com | oc -n $PROJECT create -f -
+oc process -f https://raw.githubusercontent.com/megian/nextcloud-openshift/master/nextcloud.yaml -p NEXTCLOUD_HOST=nextcloud.example.com | oc -n $PROJECT create -f -
 ```
 
 #### Template parameters
