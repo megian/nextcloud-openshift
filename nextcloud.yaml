@@ -292,19 +292,19 @@ objects:
               - -f
               - /var/www/html/cron.php
               env:
-              - name: NC_dbhost
-                value: mariadb
-              - name: NC_dbuser
+              - name: MYSQL_HOST
+                value: nextcloud-mariadb
+              - name: MYSQL_USER
                 valueFrom:
                   secretKeyRef:
                     key: database-user
-                    name: mariadb
-              - name: NC_dbpassword
+                    name: nextcloud-mariadb
+              - name: MYSQL_PASSWORD
                 valueFrom:
                   secretKeyRef:
                     key: database-password
-                    name: mariadb
-              - name: NC_dbname
+                    name: nextcloud-mariadb
+              - name: MYSQL_DATABASE
                 value: nextcloud
               image: nextcloud:${NEXTCLOUD_IMAGE_TAG}
               imagePullPolicy: Always
