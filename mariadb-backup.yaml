@@ -25,7 +25,7 @@ objects:
         template:
           spec:
             volumes:
-              - name: nextcloud-mariadb-data
+              - name: nextcloud-mariadb
                 persistentVolumeClaim:
                   claimName: nextcloud-mariadb
             containers:
