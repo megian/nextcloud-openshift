@@ -16,7 +16,7 @@ objects:
 - apiVersion: batch/v2alpha1
   kind: CronJob
   metadata:
-    name: mariadb-backup
+    name: nextcloud-mariadb-backup
   spec:
     schedule: ${BACKUP_SCHEDULE}
     concurrencyPolicy: Forbid
@@ -56,6 +56,6 @@ objects:
                 - name: MYSQL_DATABASE
                   value: nextcloud
                 volumeMounts:
-                  - name: mariadb-data
+                  - name: nextcloud-mariadb
                     mountPath: /var/lib/mysql/data
             restartPolicy: Never
