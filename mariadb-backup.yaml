@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: mariadb-backup
+  name: nextcloud-mariadb-backup
   annotations:
-    description: "Template for MongoDB container backup job"
+    description: "Template for MariaDB container backup job"
     tags: "database,mariadb,backup"
 parameters:
 - name: BACKUP_SCHEDULE
@@ -25,9 +25,9 @@ objects:
         template:
           spec:
             volumes:
-              - name: mariadb-data
+              - name: nextcloud-mariadb-data
                 persistentVolumeClaim:
-                  claimName: mariadb
+                  claimName: nextcloud-mariadb
             containers:
               - name: mariadb-backup
                 image: centos/mariadb-101-centos7
@@ -47,12 +47,12 @@ objects:
                   valueFrom:
                     secretKeyRef:
                       key: database-user
-                      name: mariadb
+                      name: nextcloud-mariadb
                 - name: MYSQL_PASSWORD
                   valueFrom:
                     secretKeyRef:
                       key: database-password
-                      name: mariadb
+                      name: nextcloud-mariadb
                 - name: MYSQL_DATABASE
                   value: nextcloud
                 volumeMounts:
